@@ -1,0 +1,40 @@
+#hr
+{
+    height: 5px;
+    background: linear-gradient(to right, yellow, red);
+    margin: 0px;
+}
+/*
+#navbar{
+
+}
+*/
+.container-fluid{
+ padding: 0;
+ margin: 0;
+}
+
+#btnLink{
+    color: #fd6721;
+}
+
+#btnLogin{
+    background-color: #fd6721;
+    border: #fd6721;
+}
+.form-control:focus {
+    border-color: #fd6721 !important;
+    box-shadow: 0 0 5px rgb(255, 144, 54) !important;
+  }
+
+/*
+.img-fluid
+{
+
+}
+
+.carousel-inner{
+
+}
+*
+/
