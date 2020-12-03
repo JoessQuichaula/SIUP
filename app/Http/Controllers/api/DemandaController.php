@@ -3,21 +3,24 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Documento;
-use App\Models\Servico;
+use App\Models\Demanda;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class ServicoController extends Controller
+class DemandaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return Servico::all();
+        //dd(Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix());
+        //
+        return Demanda::all();
     }
 
     /**
@@ -38,7 +41,33 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Save data retrieved from request Mobile - SIUP MOBILE
+        $demanda = new Demanda;
+        $demanda->reparticao_id = $request->reparticao_id;
+        $demanda->servico_id = $request->servico_id;
+        $demanda->estado = "Em Andamento";
+        $demanda->save();
+
+        //Get the current data for file path
+        $dataActual = Carbon::now();
+        $dataActual->setLocale('pt');
+        $mes = $dataActual->monthName;
+        $ano = $dataActual->year;
+
+        $paths = array();
+
+        //Save file from request Mobile - SIUP MOBILE
+        foreach ($request->file() as $file){
+            $filePath = "demandas\\".$ano."\\".$mes."\\".$demanda->id;
+            $file->store($filePath);
+            $filePath .= "\\".$file->hashName();
+            array_push($paths,$filePath);
+
+        }
+        
+        $demanda->ficheiros = json_encode($paths);
+        $demanda->update();
+
     }
 
     /**
@@ -85,9 +114,4 @@ class ServicoController extends Controller
     {
         //
     }
-
-    public function ServiceDocuments($id){
-        return Servico::find($id)->ServiceDocuments()->get();
-    }
-
 }

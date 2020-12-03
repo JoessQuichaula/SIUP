@@ -27,6 +27,10 @@ Route::apiResource('servicos','api\ServicoController');
 Route::apiResource('unidades','api\UnidadeController');
 Route::apiResource("reparticoes",'api\ReparticaoController');
 Route::apiResource("tipo-reparticoes",'api\TipoReparticaoController');
+Route::apiResource('demandas','api\DemandaController');
+
 Route::get('unidades/{id}/servicos','api\UnidadeController@unityServices');
 Route::get('unidades/{id}/reparticoes','api\UnidadeController@divisionServices');
 Route::get('municipios/{id}','api\UnidadeController@divisionCounty');
+Route::get('servicos/{id}/documentos','api\ServicoController@ServiceDocuments');
+

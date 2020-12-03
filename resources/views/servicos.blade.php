@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h1>Meus Serviços</h1>
+    <h1>Serviços</h1>
     <hr id="hr" style="margin-bottom: 16px; height:1px">
 
     @if ($servicos->count()!=0)

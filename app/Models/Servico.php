@@ -11,4 +11,9 @@ class Servico extends Model
     protected $fillable = [
         'id','nome','imagem','descricao'
     ];
+
+    public function ServiceDocuments(){
+        return $this->belongsToMany('App\Models\Documento');
+    }
+
 }

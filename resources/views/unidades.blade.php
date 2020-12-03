@@ -4,11 +4,8 @@
 
 <div class="container">
 
-    <h1>Minhas Unidades</h1>
+    <h1>Unidades</h1>
     <hr id="hr" style="margin-bottom: 16px; height:1px">
-
-
-
       <hr>
       <div class="row row-cols-1 row-cols-md-2">
         @foreach ($unidades as $unidade)
@@ -25,7 +22,8 @@
         </a>
         @endforeach
 
-    <!--
+
+        <!--
     <div class="card bg-dark text-white">
         <img src="storage/{{$unidade->image}}" class="card-img" alt="...">
             <div class="card-img-overlay">
