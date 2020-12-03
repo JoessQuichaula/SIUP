@@ -50,6 +50,7 @@ class DemandaController extends Controller
 
         //Get the current data for file path
         $dataActual = Carbon::now();
+        
         $dataActual->setLocale('pt');
         $mes = $dataActual->monthName;
         $ano = $dataActual->year;
@@ -64,7 +65,7 @@ class DemandaController extends Controller
             array_push($paths,$filePath);
 
         }
-        
+
         $demanda->ficheiros = json_encode($paths);
         $demanda->update();
 
