@@ -42,6 +42,13 @@
     </a>
 </div>
 
+<a href="http://siup.test/storage/demandas\2020\dezembro\74\FlKA9pXlAoInAPdE8buXRpYb8xezc0WsqBzO8ikQ.pdf" target="blank" class="card" style="width: 23rem; border-radius: 5px; display: inline-block; margin-left: 25px; box-shadow: gray 0px 0px 5px; --darkreader-inline-boxshadow:#60686c 0px 0px 5px;" data-darkreader-inline-boxshadow="">
+    <img class="card-img img-fluid" style="width: 100%; height:25em;" src="http://siup.test/storage/demandas\2020\dezembro\74\thumbnails\phpD954.jpeg" alt="Card image cap">
+    <div class="card-img-overlay" style="margin-top:35em border-top: 2px solid gray; --darkreader-inline-border-top:#545b5e;" data-darkreader-inline-border-top="">
+      <h4 class="card-title" style="">Documento</h4>
+      <button class="btn btn-warning"></button>
+    </div>
+  </a>
 
 @endsection
 

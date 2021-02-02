@@ -1,7 +1,81 @@
 @extends('layouts.app')
 
 @section('content')
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
 <div class="container">
+
+    <br>
+    <hr>
+
+    <div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        <h4 class="card-title mt-3 text-center">Criar Conta</h4>
+        <p class="text-center">Começe criando a sua conta de forma gratuita</p>
+
+        <form method="POST" action="{{ route('register') }}">
+          @csrf
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+             </div>
+
+            <input name="name" class="form-control" placeholder="Nome Completo" type="text">
+        </div>
+        <!-- form-group// -->
+
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+             </div>
+            <input name="email" class="form-control" placeholder="Endereço de Email" type="email">
+        </div> <!-- form-group// -->
+
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+            </div>
+            <select class="custom-select" style="max-width: 120px;">
+                <option selected="">+244</option>
+            </select>
+            <input name="telemovel" class="form-control" placeholder="Número de Telemóvel" type="text">
+        </div>
+
+        <!-- form-group// -->
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+            </div>
+            <input name="bilhete_identidade" class="form-control" placeholder="Nº do Bilhete de Identidade" type="text">
+        </div> <!-- form-group end.// -->
+
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input name="password" class="form-control" placeholder="Palavra-Passe" type="password">
+        </div> <!-- form-group// -->
+
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input name="password_confirmation" class="form-control" placeholder="Repetir Palavra-Passe" type="password">
+        </div> <!-- form-group// -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" id="btnLogin">Criar Conta</button>
+        </div> <!-- form-group// -->
+        <p class="text-center">Já associou a sua conta? <a href="http://siup.test/login" id="btnLink">Entrar</a> </p>
+    </form>
+    </article>
+    </div> <!-- card.// -->
+
+    </div>
+
+
+
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -40,6 +114,34 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="telemovel" class="col-md-4 col-form-label text-md-right">{{ __('telemovel') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="telemovel" type="text" class="form-control @error('telemovel') is-invalid @enderror" name="telemovel" value="{{ old('telemovel') }}" required autocomplete="telemovel">
+
+                                @error('telemovel')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="bilhete_identidade" class="col-md-4 col-form-label text-md-right">{{ __('bilhete_identidade') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="bilhete_identidade" type="text" class="form-control @error('bilhete_identidade') is-invalid @enderror" name="bilhete_identidade" value="{{ old('bilhete_identidade') }}" required autocomplete="bilhete_identidade">
+
+                                @error('bilhete_identidade')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -64,10 +166,25 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Registrar') }}
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="file" class="col-md-4 col-form-label text-md-right">{{ __('Ficheiro') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="file" type="file" class="form-control @error('file') is-invalid @enderror" name="file" value="{{ old('file') }}" required autocomplete="file">
+
+                                @error('file')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

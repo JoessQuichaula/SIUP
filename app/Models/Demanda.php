@@ -19,7 +19,9 @@ class Demanda extends Model
 
     public function scopeCurrentUser($query)
     {
-    return $query->where('reparticao_id', Auth::user()->reparticao_id);
-}
+        if(Auth::user()->id != 1){
+            return $query->where('reparticao_id', Auth::user()->reparticao_id);
+        }
+    }
 
 }

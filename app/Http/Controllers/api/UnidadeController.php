@@ -101,6 +101,9 @@ class UnidadeController extends Controller
         return Municipio::findOrFail($id);
     }
 
-    
+    public function allDivisionCounty(){
+        return Municipio::all();
+    }
+
 
 }

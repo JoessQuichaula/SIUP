@@ -34,9 +34,7 @@
 @stop
 
 @section('content')
-
     <div class="page-content read container-fluid">
-
         <div class="row">
             <div class="col-md-12">
 
@@ -46,12 +44,10 @@
                         @php
                         if ($dataTypeContent->{$row->field.'_read'}) {
                             $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_read'};
-
                         }
                         @endphp
                         <div class="panel-heading" style="border-bottom:0;">
                             <h3 class="panel-title">{{ $row->getTranslatedAttribute('display_name') }}</h3>
-
                         </div>
 
                         <div class="panel-body" style="padding-top:0;">
@@ -77,12 +73,13 @@
                             )
                                 <?php echo $row->details->options->{$dataTypeContent->{$row->field}};?>
                             @elseif($row->type == 'select_multiple')
+                                @if(property_exists($row->details, 'relationship'))
 
-                             @if(property_exists($row->details, 'relationship'))
                                     @foreach(json_decode($dataTypeContent->{$row->field}) as $item)
                                         {{ $item->{$row->field}  }}
                                     @endforeach
-                            @elseif(property_exists($row->details, 'options'))
+
+                                @elseif(property_exists($row->details, 'options'))
                                     @if (!empty(json_decode($dataTypeContent->{$row->field})))
                                         @foreach(json_decode($dataTypeContent->{$row->field}) as $item)
                                             @if (@$row->details->options->{$item})
@@ -91,29 +88,8 @@
                                         @endforeach
                                     @else
                                         {{ __('voyager::generic.none') }}
+                                    @endif
                                 @endif
-                            @endif
-                            <!-- My Code -->
-                            @php
-                                $documentStats = App\Models\DocumentoDemanda::where('demanda_id',$demanda_id)->get();
-                            @endphp
-                            @foreach($documentStats as $doc)
-                            @php
-                                $documento = App\Models\Documento::where('id',$doc->documento_id)->get();
-                            @endphp
-                            <a href="{{asset('storage/'.$doc->ficheiro)}}" target="blank"  class="card"  style="width: 23rem; border-radius:15px; display:inline-block; margin-left:25px; box-shadow: 0px 0px 5px gray; margin-top:5px">
-                                  <img class="card-img img-fluid" style="width: 100%; height:21em;" src="{{asset('storage/'.$doc->thumbnail)}}" alt="Card image cap">
-                                  <div style="border-top:2px solid #909090">
-                                    <img src="https://play-lh.googleusercontent.com/IQqZ3GQ_sNYaoX3y0iWFGpQhXi4g0rh8kPfMLaErBoKftnazNEk4v7X3E1wXk0HEInEW" width="20px" height="20px" style="margin-top:-2rem;margin-left:20px;border-radius:5px; display:inline-block"/>
-                                    <h4 style="width:75%;margin-left:15px;white-space:nowrap;display:inline-block;text-overflow:ellipsis; overflow:hidden">{{$documento[0]->nome}}</h4>
-                                  </div>
-
-                                </a>
-                            @endforeach
-                              <!--End My Code https://play-lh.googleusercontent.com/nufRXPpDI9XP8mPdAvOoJULuBIH_OK4YbZZVu8i_-eDPulZpgb-Xp-EmI8Z53AlXHpqX-->
-
-
-
                             @elseif($row->type == 'date' || $row->type == 'timestamp')
                                 @if ( property_exists($row->details, 'format') && !is_null($dataTypeContent->{$row->field}) )
                                     {{ \Carbon\Carbon::parse($dataTypeContent->{$row->field})->formatLocalized($row->details->format) }}
@@ -152,36 +128,20 @@
                                 @endif
                             @else
                                 @include('voyager::multilingual.input-hidden-bread-read')
-                                @if($loop->first)
-                                    @php
-                                     $demanda_id = $dataTypeContent->{$row->field}
-                                    @endphp
-                                @endif
-
-                                @if ($loop->last)
+                                @if($loop->last)
                                 @php
-                                 $user = App\User::where('id',$dataTypeContent->{$row->field})->firstOrFail();
-                                 $teste = json_decode($user,true);
+                                $user = App\User::where('bilhete_identidade_ficheiro',$dataTypeContent->{$row->field})->firstOrFail();
                                 @endphp
-                                <div>
-                                    <h5 style="display: inline-block">ID: </h5>
-                                    <p style="display: inline-block">{{$teste["id"]}}</p>
-                                    <br>
-                                    <h5 style="display: inline-block">NOME: </h5>
-                                    <p style="display: inline-block">{{$teste["name"]}}</p>
-                                    <br>
-                                    <h5 style="display: inline-block">Nº do Bilhete de Identidade: </h5>
-                                <p style="display: inline-block">{{$teste["bilhete_identidade"]}}</p>
-                                <br>
-                                <h5 style="display: inline-block">Bilhete de Identidade(PDF): </h5>
-                                <a style="display: inline-block" href="{{asset('storage/'.$teste["bilhete_identidade_ficheiro"])}}" target="blank">Visualizar</a>
-                                </div>
-
-
-
-                                @else
-                                <p>{{ $dataTypeContent->{$row->field} }}</p>
-                                @endif
+                                <a href="{{asset('storage/'. $dataTypeContent->{$row->field})}}" target="blank"  class="card"  style="width: 23rem; border-radius:15px; display:inline-block; margin-left:25px; box-shadow: 0px 0px 5px gray; margin-top:5px">
+                                    <img class="card-img img-fluid" style="width: 100%; height:21em;" src="{{asset('storage/'. $user->bilhete_identidade_thumbnail)}}" alt="Card image cap">
+                                    <div style="border-top:2px solid #909090">
+                                      <img src="https://play-lh.googleusercontent.com/IQqZ3GQ_sNYaoX3y0iWFGpQhXi4g0rh8kPfMLaErBoKftnazNEk4v7X3E1wXk0HEInEW" width="20px" height="20px" style="margin-top:-2rem;margin-left:20px;border-radius:5px; display:inline-block"/>
+                                      <h4 style="width:75%;margin-left:15px;white-space:nowrap;display:inline-block;text-overflow:ellipsis; overflow:hidden">Bilhete de Identidade</h4>
+                                    </div>
+                                  </a>
+                                  @else
+                                  <p>{{ $dataTypeContent->{$row->field} }}</p>
+                            @endif
 
 
                             @endif
@@ -192,48 +152,9 @@
                     @endforeach
 
                 </div>
-
-                {{--
-
-            <a href="" class="btn btn-success">
-                <span class="glyphicon glyphicon-check"></span>&nbsp;
-                Aceitar
-            </a>
-
-            <a href="" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
-                <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Rejeitar</span>
-            </a>
-
-
-
-                <textarea style="width:800px;" class="form-control richTextBox" name="{{ $row->field }}" id="richtext{{ $row->field }}">
-
-                </textarea>
-
-
-                @push('javascript')
-                    <script>
-                        $(document).ready(function() {
-                            var additionalConfig = {
-                                selector: 'textarea.richTextBox[name="{{ $row->field }}"]',
-                            }
-
-                            $.extend(additionalConfig, {!! json_encode($options->tinymceOptions ?? '{}') !!})
-
-                            tinymce.init(window.voyagerTinyMCE.getConfig(additionalConfig));
-                        });
-                    </script>
-                @endpush
-
---}}
-
             </div>
         </div>
-
-
-
     </div>
-
 
     {{-- Single delete modal --}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
@@ -283,11 +204,4 @@
         });
 
     </script>
-
-
 @stop
-
-<script src="//npmcdn.com/pdfjs-dist/build/pdf.js"></script>
-
-
-

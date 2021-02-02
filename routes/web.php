@@ -46,7 +46,11 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+
+
 Route::get('dados/noticias','PostController@apiIndex');
+Route::get('demandas', 'UnidadeController@teste');
+Route::post('demandas', 'UnidadeController@testePlaceHolder')->name("demandas.st");
 
 
 Auth::routes();

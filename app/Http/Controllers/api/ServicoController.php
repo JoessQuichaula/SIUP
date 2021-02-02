@@ -17,6 +17,7 @@ class ServicoController extends Controller
 
     public function index()
     {
+
         return Servico::all();
     }
 
@@ -49,7 +50,7 @@ class ServicoController extends Controller
      */
     public function show($id)
     {
-        //
+       return Servico::findOrFail($id);
     }
 
     /**

@@ -48,7 +48,7 @@ class ReparticaoController extends Controller
      */
     public function show($id)
     {
-        
+        return Reparticao::findOrFail($id);
     }
 
     /**
@@ -71,7 +71,9 @@ class ReparticaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rep = Reparticao::findOrFail($id);
+        $rep->estado_id= $request->valor;
+        $rep->update();
     }
 
     /**
