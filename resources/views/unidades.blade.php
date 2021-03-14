@@ -15,7 +15,7 @@
             <img src="storage/{{$unidade->image}}" class="card-img-top" alt="...">
               <div class="card-body">
               <h5 class="card-title">{{$unidade->nome}}</h5>
-              <p class="card-text">Last updated 3 mins ago</p>
+              
               </div>
             </div>
           </div>

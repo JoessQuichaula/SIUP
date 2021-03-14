@@ -11,7 +11,7 @@ class PostController extends Controller
 
     public function __construct()
     {
-       
+
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(3);
+        $posts = Post::orderBy('id', 'DESC')->paginate('3');
         return view('news',compact('posts'));
     }
 

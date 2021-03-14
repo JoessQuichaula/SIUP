@@ -81,7 +81,7 @@ class DemandaController extends Controller
         $index = 0;
         $idDocuments = array_keys($request->file());
 
-        
+
         //Save file from request Mobile - SIUP MOBILE
         foreach ($request->file() as $file){
             $documentStats = new DocumentoDemanda();

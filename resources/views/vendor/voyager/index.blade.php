@@ -3,17 +3,11 @@
 @section('content')
 <div style="text-align: right; margin-top:20px">
     <input type="checkbox" onchange="change()" data-on="<i class='fa fa-power-off' aria-hidden='true'></i> Encerrar" data-off="<i class='fa fa-power-off' aria-hidden='true'></i> Abrir"data-toggle="toggle" id="tes" data-style="ios">
-
 </div>
 
-    <div class="page-content">
-
-
-
-
+<div class="page-content">
         @include('voyager::alerts')
         @include('voyager::dimmers')
-
         <div class="analytics-container">
             <?php $google_analytics_client_id = Voyager::setting("admin.google_analytics_client_id"); ?>
             @if (isset($google_analytics_client_id) && !empty($google_analytics_client_id))
@@ -116,23 +110,21 @@ var valor = {{$val}};
 
 function change() {
     if (checkbox.checked) {
-        $.ajax({
-            url:"http://siup.test/api/reparticoes/"+valor,
-            data:"valor=1",
-            type:'PUT'
-        }).done(function(resposta){
-
-    })
+            $.ajax({
+                url:"http://siup.test/api/reparticoes/"+valor,
+                data:"valor=1",
+                type:'PUT'
+            }).done(function(resposta){
+        })
     }
     else{
         $.ajax({
-            url:"http://siup.test/api/reparticoes/"+valor,
-            data:"valor=2",
-            type:'PUT'
-        }).done(function(resposta){
-
-         })
-     }
+                url:"http://siup.test/api/reparticoes/"+valor,
+                data:"valor=2",
+                type:'PUT'
+            }).done(function(resposta){
+            })
+    }
 }
 </script>
 <script src="https://use.fontawesome.com/6c030e6fc0.js"></script>

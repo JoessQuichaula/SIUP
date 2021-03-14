@@ -4,6 +4,7 @@
 
 <div class="container">
 
+
     <h1>Serviços</h1>
     <hr id="hr" style="margin-bottom: 16px; height:1px">
 
@@ -18,13 +19,13 @@
             <p class="card-text">{!!$servico->descricao!!}</p>
             </div>
             <div class="list-group list-group-flush">
-              <a href="" class="list-group-item bg-bottom">Procedimentos</a>
-              <a href="" class="list-group-item"> Documentos Necessários</a></li>
+              <a href="http://www.servicos.minjusdh.gov.ao/outros-servicos-ao-cidadao/32/identificacao-civil-e-criminal" class="list-group-item bg-bottom">Procedimentos</a>
+              <a href="http://www.servicos.minjusdh.gov.ao/outros-servicos-ao-cidadao/32/identificacao-civil-e-criminal" class="list-group-item"> Documentos Necessários</a></li>
               <a href="" class="list-group-item">Mais</a>
             </div>
             <div class="card-body">
               <a href="#" class="card-link">Unidade</a>
-              <a href="#" class="card-link">Acessar</a>
+              <a href="{{asset('/maps/'.$servico->id)}}" class="card-link">Acessar</a>
             </div>
           </div>
         @endforeach

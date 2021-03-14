@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <div class="container">
-
     <br>
     <hr>
 
@@ -14,23 +13,32 @@
         <h4 class="card-title mt-3 text-center">Criar Conta</h4>
         <p class="text-center">Começe criando a sua conta de forma gratuita</p>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
           @csrf
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
              </div>
-
-            <input name="name" class="form-control" placeholder="Nome Completo" type="text">
+            <input name="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nome Completo" type="text" required autocomplete="name" autofocus>
+            @error('name')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
         </div>
-        <!-- form-group// -->
+
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
              </div>
-            <input name="email" class="form-control" placeholder="Endereço de Email" type="email">
-        </div> <!-- form-group// -->
+            <input name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Endereço de Email" type="email" value="{{ old('email') }}" required autocomplete="email">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+            @enderror
+        </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
@@ -39,33 +47,65 @@
             <select class="custom-select" style="max-width: 120px;">
                 <option selected="">+244</option>
             </select>
-            <input name="telemovel" class="form-control" placeholder="Número de Telemóvel" type="text">
+            <input name="telemovel" placeholder="Número de Telemóvel" type="text" class="form-control @error('telemovel') is-invalid @enderror"  value="{{ old('telemovel') }}" required autocomplete="telemovel">
+            @error('telemovel')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <!-- form-group// -->
+
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-building"></i> </span>
             </div>
-            <input name="bilhete_identidade" class="form-control" placeholder="Nº do Bilhete de Identidade" type="text">
-        </div> <!-- form-group end.// -->
+            <input name="bilhete_identidade" placeholder="Nº do Bilhete de Identidade" type="text" class="form-control @error('bilhete_identidade') is-invalid @enderror" value="{{ old('bilhete_identidade') }}" required autocomplete="bilhete_identidade">
+            @error('bilhete_identidade')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input name="password" class="form-control" placeholder="Palavra-Passe" type="password">
-        </div> <!-- form-group// -->
+            <input name="password" placeholder="Palavra-Passe" type="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        </div>
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input name="password_confirmation" class="form-control" placeholder="Repetir Palavra-Passe" type="password">
-        </div> <!-- form-group// -->
+            <input name="password_confirmation" class="form-control" placeholder="Repetir Palavra-Passe" type="password" required autocomplete="new-password">
+        </div>
+        <label>Bilhete de Identidade(PDF)</label>
+        <br>
+        <div class="form-group input-group">
+
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-upload"></i> </span>
+            </div>
+            <input id="ficheiro" type="file" class="form-control @error('file') is-invalid @enderror" name="ficheiro" value="{{ old('file') }}" required autocomplete="file">
+            @error('file')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        </div>
+
+
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block" id="btnLogin">Criar Conta</button>
-        </div> <!-- form-group// -->
+        </div>
+
         <p class="text-center">Já associou a sua conta? <a href="http://siup.test/login" id="btnLink">Entrar</a> </p>
     </form>
     </article>
@@ -74,7 +114,7 @@
     </div>
 
 
-
+    <!--
     <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -191,4 +231,5 @@
         </div>
     </div>
 </div>
+-->
 @endsection

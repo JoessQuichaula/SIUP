@@ -1,3 +1,93 @@
+.contact-form{
+    background: #fd6721;
+
+    margin:auto;
+    width: 100%;
+
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+.contact-image{
+    text-align: center;
+}
+.contact-image img{
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -3%;
+    transform: rotate(29deg);
+}
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: white;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
+
+
+.btn-grad {background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%)}
+.btn-grad {
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+
+
+#myAwesomeDropzone{
+    border: 2px dashed #fd6721;
+    border-radius: 5px;
+    background: whitesmoke;
+
+}
+
+.dz-filename{
+    margin-top: 30px;
+}
+
+#repAttr li{
+    margin-left: -40px;
+    margin-bottom: 0px;
+    list-style-type: none;
+}
 
 
 #hr
@@ -7,8 +97,8 @@
     margin: 0px;
 }
 
-#navbar{
-
+#gradientBtnStyle{
+    background: linear-gradient(to right, yellow, red);
 }
 
 .container-fluid{
@@ -20,6 +110,8 @@
     color: #fd6721;
 }
 
+
+
 #btnLogin{
     background-color: #fd6721;
     border: #fd6721;
@@ -29,17 +121,80 @@
     box-shadow: 0 0 5px rgb(255, 144, 54) !important;
 }
 
-
-
-/*
-.img-fluid
-{
-
+footer{
+    position: absolute;
+    bottom:10;
+    box-shadow: 0px 5px 5px #888, 0px -1px 3px #888;
 }
 
-.carousel-inner{
 
+
+#cards-list-home {
+    z-index: 0;
+    width: 80%;
+    margin-left: 10em;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
-*/
+
+  #card-home {
+    margin: 30px auto;
+    width: 600px;
+    height: 300px;
+    border-radius: 40px;
+    /*background:linear-gradient(#F2994A, #F2C94C);*/
+    background: rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+  }
+
+  #card-home .card_image {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+  }
+
+  #card-home .card_image img {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+    object-fit: cover;
+  }
+
+  #card-home .card_title {
+    text-align: center;
+    border-radius: 0px 0px 40px 40px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: -80px;
+    height: 40px;
+  }
+
+  #card-home:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }
+
+  .title-white {
+    color: white;
+  }
+
+  .title-black {
+    color: black;
+  }
+
+  @media all and (max-width: 500px) {
+    .card-list {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+    }
+  }
+
+
 
 

@@ -109,6 +109,8 @@
                         {{ csrf_field() }}
                     </form>
 
+
+
                 </div>
             </div>
         </div>
@@ -139,6 +141,8 @@
 @stop
 
 @section('javascript')
+
+
     <script>
         var params = {};
         var $file;
@@ -212,4 +216,3 @@
         });
     </script>
 @stop
-
