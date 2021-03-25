@@ -70,7 +70,6 @@ class DemandaController extends Controller
         $ano = $dataActual->year;
 
 
-        //$paths = array();
 
         //Configuration for Thumbnail
         $ghostScriptExePath = "C:/laragon/bin/gs9.53.3/bin/gswin64c.exe";
@@ -104,7 +103,7 @@ class DemandaController extends Controller
             $pdfToImageManager->setResolution(500);
             $pdfToImageManager->saveImage("$filePathForThumbNail\\$filename");
 
-            //$paths[$assetFilePathForThumbNail]=$filePath;
+            
 
 
             $documentStats->demanda_id = $demanda->id;
@@ -116,9 +115,6 @@ class DemandaController extends Controller
             ++$index;
         }
 
-
-        //$demanda->ficheiros = json_encode($paths);
-        //$demanda->update();
 
     }
 

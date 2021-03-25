@@ -2,14 +2,28 @@
 
 @section('content')
 
+<!--
+<ul class="nav nav-tabs justify-content-center nav-fill">
+    <li class="nav-item send-chooser">
+      <a class="nav-link active" href="#">Enviar Documentos</a>
+    </li>
+    <li class="nav-item send-chooser" id="me">
+      <a class="nav-link" href="#">Agendar Serviço</a>
+    </li>
+  </ul>
+-->
+
 <div class="container">
+
     <div class="py-5 text-center">
       <h2>Selecione os Documentos</h2>
       <p class="lead">A actualização do Estatuto Orgânico do Ministério da Justiça e dos Direitos Humanos foi aprovado pelo Decreto Presidencial Nº 224/20 de 31 de Agosto, no âmbito do Processo de Reforma Administrativa da Justiça em curso.</p>
     </div>
 
+
     <div class="row" style="padding-bottom: 20%">
-      <div class="col-md-4 order-md-2 mb-4">
+
+        <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Lista De Documentos</span>
           <span class="badge badge-secondary badge-pill">{{count($documentos)}}</span>
@@ -35,6 +49,7 @@
           </div>
         </form>
       </div>
+
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Dispõe os documentos</h4>
         <form action="{{route('demandas.st')}}" enctype="multipart/form-data" method="POST" class="dropzone" id="myAwesomeDropzone" style="padding: 60px">
@@ -74,14 +89,23 @@
           </div>
         </form>
         <hr class="mb-4">
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">concorda com os nossos <a href="">Termos de Uso</a></label>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Ao enviar os seus documentos, concorda com as nossas políticas de privacidade.</label>
+          </div>
+          <!--
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="same-address">
-            <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            <label class="custom-control-label" for="same-address">concorda com os nossos <a href="">Termos de Uso</a></label>
           </div>
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="save-info">
-            <label class="custom-control-label" for="save-info">Save this information for next time</label>
-          </div>
+            <label class="custom-control-label" for="save-info">Ao enviar os seus documentos, concorda com as nossas políticas de privacidade.</label>
+          </div>-->
           <hr class="mb-4">
 
           <hr class="mb-4">
@@ -91,7 +115,10 @@
 </div>
 
 
+
+
 <script>
+
     var documentos = @json($documentos);
     var documentIDs = [];
     var isFormAlreadyInUse=false;

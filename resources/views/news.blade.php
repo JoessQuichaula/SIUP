@@ -10,7 +10,7 @@
         @foreach ($posts as $post)
         <div class="col mb-4">
             <div class="card">
-            <img src="storage/{{$post->image}}" class="card-img-top" alt="...">
+            <img src="storage/{{$post->image}}" class="card-img-top" style="max-height: 300px" height="300px" alt="...">
               <div class="card-body">
               <h5 class="card-title">{{$post->title}}</h5>
               <p class="card-text">Last updated 3 mins ago</p>

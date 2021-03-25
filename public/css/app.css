@@ -72,6 +72,17 @@
           }
 
 
+
+#cpanel{
+    
+}
+
+#btn-nav-login{
+    color:white;
+    background-color: #fd6721;
+    border: 1px solid #fd6721;
+}
+
 #myAwesomeDropzone{
     border: 2px dashed #fd6721;
     border-radius: 5px;
@@ -111,6 +122,17 @@
 }
 
 
+#me:hover{
+    background-color: #fd6721;
+    color: white;
+}
+.nav-link:hover{
+    color: white;
+}
+
+.nav-link{
+    color:#fd6721
+}
 
 #btnLogin{
     background-color: #fd6721;

@@ -44,7 +44,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         /*
         $rules = [
             'name' => 'unique:users|required',
@@ -146,7 +145,55 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->telemovel=$request->telemovel;
+        $user->bilhete_identidade = $request->bilhete_identidade;
+
+
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+        if($request->hasFile('bilheteIdentidade')){
+
+            $ghostScriptExePath = "C:/laragon/bin/gs9.53.3/bin/gswin64c.exe";
+            Ghostscript::setGsPath($ghostScriptExePath);
+
+             //Get the current data for file path
+            $dataActual = Carbon::now();
+            $dataActual->setLocale('pt');
+            $mes = $dataActual->monthName;
+            $ano = $dataActual->year;
+
+            $file = $request->file("bilheteIdentidade");
+            $filePath = "users\\$ano\\$mes\\$user->id";
+            $filePathForThumbNail = public_path()."\\storage\\$filePath\\thumbnails";
+            $assetFilePathForThumbNail = "$filePath\\thumbnails";
+            $file->store($filePath);
+
+            $filename = pathinfo($file, PATHINFO_FILENAME);
+            $filePath .= "\\".$file->hashName();
+            $assetFilePathForThumbNail .= "\\$filename.jpeg";
+            $fullFilePath = public_path()."\\storage\\$filePath";
+
+            $pdfToImageManager = new Pdf($fullFilePath);
+            $pdfToImageManager->setResolution(500);
+            $pdfToImageManager->saveImage("$filePathForThumbNail\\$filename");
+
+            $user->bilhete_identidade_ficheiro = $filePath;
+            $user->bilhete_identidade_thumbnail = $assetFilePathForThumbNail;
+
+        }
+
+        $user->update();
+
+
+
+        //return $user;
+        //$user->update();
+        //return $request->file("bilheteIdentidade");
     }
 
     /**

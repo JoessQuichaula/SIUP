@@ -13,7 +13,7 @@
 
         @foreach ($servicos as $servico)
         <div class="card" style="width: 18rem;">
-            <img src="{{asset('storage/'.$servico->imagem)}}" class="card-img-top" alt="...">
+            <img src="{{asset('storage/'.$servico->imagem)}}" class="card-img-top" style="height: 300px" alt="...">
             <div class="card-body">
             <h5 class="card-title">{{$servico->nome}}</h5>
             <p class="card-text">{!!$servico->descricao!!}</p>

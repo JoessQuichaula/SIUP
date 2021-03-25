@@ -87,7 +87,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="btn btn-warning nav-link" href="{{ route('login') }}">{{ __('Iniciar Sessão') }}</a>
+                                <a class="btn btn-primary nav-link" id="btn-nav-login" href="{{ route('login') }}">{{ __('Iniciar Sessão') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">

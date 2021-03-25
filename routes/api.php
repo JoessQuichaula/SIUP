@@ -44,3 +44,6 @@ Route::get('municipios/{id}','api\UnidadeController@divisionCounty');
 Route::get('municipios','api\UnidadeController@allDivisionCounty');
 Route::get('servicos/{id}/documentos','api\ServicoController@ServiceDocuments');
 
+Route::get('notificacoes','api\NotificacaoController@apiIndex');
+Route::get('notificacoes/{id}', 'api\NotificacaoController@userNotifications');
+

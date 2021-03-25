@@ -5,11 +5,13 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Demanda;
 use App\Models\Notificacao;
+use App\Models\NotificacaoUser;
 use App\User;
 use Illuminate\Http\Request;
 
 class NotificacaoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
+
     public function store(Request $request)
     {
         //
@@ -25,25 +27,43 @@ class NotificacaoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCon
         $demanda->estado_id = $request->estado_id;
         $demanda->update();
 
+        $notificacaoUser = new NotificacaoUser;
+        $notificacaoUser->user_id = $user->id;
+
 
         if($request->estado_id==1){
             $titulo=$notificacao[0]->titulo;
             $corpo=$notificacao[0]->corpo;
+            $notificacaoUser->notificacao_id = $notificacao[0]->id;
             $this->sendNotification($titulo,$corpo,$telemovel);
         }
         elseif($request->estado_id==2){
-            $titulo=$notificacao[1]->titulo;
-            $corpo=$notificacao[1]->corpo;
+            $titulo=$notificacao[2]->titulo;
+            $corpo=$notificacao[2]->corpo;
+            $notificacaoUser->notificacao_id = $notificacao[2]->id;
             $this->sendNotification($titulo,$corpo,$telemovel);
         }
         else{
-            $titulo=$notificacao[2]->titulo;
-            $corpo=$notificacao[2]->corpo;
+            $titulo=$notificacao[1]->titulo;
+            $corpo=$notificacao[1]->corpo;
+            $notificacaoUser->notificacao_id = $notificacao[1]->id;
             $this->sendNotification($titulo,$corpo,$telemovel);
         }
 
-
+        $notificacaoUser->save();
         return redirect('/admin/demandas');
+    }
+
+    public function userNotifications($id){
+        $notificacaoUser = NotificacaoUser::where('user_id',$id)
+            ->orderBy('id','desc')
+            ->get();
+
+        return $notificacaoUser;
+    }
+
+    public function apiIndex(){
+        return Notificacao::all();
     }
 
     /**
